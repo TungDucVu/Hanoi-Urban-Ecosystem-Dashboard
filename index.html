@@ -8,9 +8,9 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="Interactive Urban Ecosystem and Environmental Quality Dashboard for Hanoi. Tracks LULC, Land Surface Temperature, Air Quality, and Urbanization Pressure.">
+        content="Interactive Urban Ecosystem and Environmental Quality Dashboard for Hanoi. Tracks Land Surface Temperature, Air Quality, and Urbanization Pressure.">
     <meta name="keywords"
-        content="Hanoi GIS, LULC, Environmental Quality, Urban Pressure, Air Quality Index, Land Surface Temperature, Flood Points, Remote Sensing">
+        content="Hanoi GIS, Environmental Quality, Urban Pressure, Air Quality Index, Land Surface Temperature, Flood Points, Remote Sensing">
     <meta name="author" content="TungDucVu">
 
     <!-- Google Fonts -->
@@ -45,13 +45,6 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-
-            /* LULC Colors */
-            --color-water: #0000ff;
-            --color-urban: #ff0000;
-            --color-agriculture: #ffff00;
-            --color-greenery: #008000;
-            --color-bareland: #a0522d;
         }
 
         * {
@@ -845,11 +838,11 @@
                     <h1>Hanoi Urban Ecosystem Portal</h1>
                     <span id="live-badge" class="header-tag" style="background: rgba(156, 163, 175, 0.15); border-color: var(--text-muted); color: var(--text-muted);">Static</span>
                 </div>
-                <p style="font-size: 11px; color: var(--text-muted);" id="header-timestamp">Land Cover, Environmental Quality, & Urban Pressure Metrics (2024)</p>
+                <p style="font-size: 11px; color: var(--text-muted);" id="header-timestamp">Environmental Quality & Urban Pressure Metrics (2026)</p>
             </div>
         </div>
         <div class="header-actions">
-            <a href="data/hanoi_lulc_district_areas.csv" class="btn" download><i class="fa-solid fa-file-csv"></i>
+            <a href="data/hanoi_environmental_urban_metrics.csv" class="btn" download><i class="fa-solid fa-file-csv"></i>
                 Export CSV Data</a>
             <a href="https://github.com/TungDucVu/Dashboard_Hanoi" target="_blank" class="btn btn-primary"><i
                     class="fa-brands fa-github"></i> Repository</a>
@@ -859,10 +852,7 @@
     <!-- Theme Tab Switcher -->
     <div class="tab-navigation-container">
         <div class="tab-switcher">
-            <button id="btn-tab-lulc" class="tab-btn active" onclick="switchTheme('lulc')">
-                <i class="fa-solid fa-layer-group"></i> LULC Overview
-            </button>
-            <button id="btn-tab-env" class="tab-btn" onclick="switchTheme('env')">
+            <button id="btn-tab-env" class="tab-btn active" onclick="switchTheme('env')">
                 <i class="fa-solid fa-leaf"></i> Environmental Quality
             </button>
             <button id="btn-tab-urban" class="tab-btn" onclick="switchTheme('urban')">
@@ -913,8 +903,7 @@
         <div class="map-section">
             <div class="map-wrapper">
                 <div class="map-header">
-                    <h3 class="map-title" id="map-title-text"><i class="fa-solid fa-map-location-dot"></i> Hanoi LULC
-                        Classification Map (2024)</h3>
+                    <h3 class="map-title" id="map-title-text"><i class="fa-solid fa-wind"></i> Air Quality Index (AQI) Choropleth Map</h3>
                     <div style="font-size: 11px; color: var(--text-muted);">
                         <i class="fa-solid fa-circle-info"></i> Click or hover on districts to see local statistics
                     </div>
@@ -932,26 +921,8 @@
                         style="display:none;">Clear</button>
                 </div>
 
-                <!-- Dynamic Content for Tab 1: LULC Overview -->
-                <div id="side-content-lulc" class="panel-content-tab active">
-                    <div id="lulc-stats-rows"></div>
-                    <div class="radial-progress-wrapper">
-                        <div class="radial-chart">
-                            <div id="radial-outer" class="radial-outer">
-                                <div class="radial-inner">
-                                    <span id="radial-pct" class="radial-pct">--</span>
-                                    <span id="radial-lbl" class="radial-lbl">Urbanized</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="position: relative; height: 180px; margin-top: auto;">
-                        <canvas id="sidePieChart"></canvas>
-                    </div>
-                </div>
-
                 <!-- Dynamic Content for Tab 2: Environmental Quality -->
-                <div id="side-content-env" class="panel-content-tab">
+                <div id="side-content-env" class="panel-content-tab active">
                     <div class="env-badge-container">
                         <span class="env-badge-label"><i class="fa-solid fa-wind"></i> Air Quality (AQI)</span>
                         <div style="text-align: right;">
@@ -968,18 +939,6 @@
                         <span class="stat-label"><i class="fa-solid fa-trash-can"></i> Solid Waste Collected</span>
                         <span class="stat-value" id="env-waste-val">-- tons/day</span>
                     </div>
-                    <div class="stat-row">
-                        <span class="stat-label"><i class="fa-solid fa-tree"></i> Green Space Ratio</span>
-                        <span class="stat-value" id="env-greenspace-val">-- %</span>
-                    </div>
-
-                    <!-- Temperature by Cover Chart -->
-                    <div style="position: relative; height: 210px; margin-top: 20px;">
-                        <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 5px;">
-                            <i class="fa-solid fa-fire-flame-simple"></i> Land Surface Temp (°C) by Class
-                        </p>
-                        <canvas id="sideLstCoverChart"></canvas>
-                    </div>
                 </div>
 
                 <!-- Dynamic Content for Tab 3: Urban Pressure -->
@@ -989,28 +948,24 @@
                         <span class="stat-value" id="urban-density-val">-- people/km²</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label"><i class="fa-solid fa-cubes"></i> Concretization Rate</span>
-                        <span class="stat-value" id="urban-concrete-val">-- %</span>
-                    </div>
-                    <div class="stat-row">
                         <span class="stat-label"><i class="fa-solid fa-cloud-showers-water"></i> Flood Points</span>
                         <span class="stat-value" id="urban-floods-val">-- points</span>
                     </div>
 
-                    <!-- Concretization Gauge Visual -->
+                    <!-- Population Density Gauge Visual -->
                     <div class="progress-bar-container" style="margin-top: 25px;">
                         <div class="progress-bar-label">
-                            <span>Concretization Level</span>
-                            <span id="urban-concrete-lbl">--</span>
+                            <span>Population Density Level</span>
+                            <span id="urban-density-lbl">--</span>
                         </div>
                         <div class="progress-bar-bg">
-                            <div id="urban-concrete-fill" class="progress-bar-fill"></div>
+                            <div id="urban-density-fill" class="progress-bar-fill"></div>
                         </div>
                     </div>
 
                     <div class="urban-warning-box" id="urban-flood-warning">
                         <i class="fa-solid fa-triangle-exclamation"></i>
-                        <span>High urban concrete cover restricts rain drainage, increasing local flood risks.</span>
+                        <span>High population density and urban pressure increase risk of municipal and drainage stress.</span>
                     </div>
                 </div>
 
@@ -1018,24 +973,8 @@
         </div>
 
         <!-- Regional Analytics Section (Dynamic depending on Tab) -->
-        <!-- Tab 1 Charts -->
-        <div id="charts-lulc" class="analytics-section active">
-            <div class="analytics-card">
-                <h3><i class="fa-solid fa-chart-bar"></i> District Urbanization Rates (%)</h3>
-                <div class="chart-container">
-                    <canvas id="chart-lulc-bar"></canvas>
-                </div>
-            </div>
-            <div class="analytics-card">
-                <h3><i class="fa-solid fa-chart-pie"></i> Hanoi Total Land Cover Composition</h3>
-                <div class="chart-container">
-                    <canvas id="chart-lulc-pie"></canvas>
-                </div>
-            </div>
-        </div>
-
         <!-- Tab 2 Charts -->
-        <div id="charts-env" class="analytics-section">
+        <div id="charts-env" class="analytics-section active">
             <div class="analytics-card">
                 <h3><i class="fa-solid fa-temperature-high"></i> Average Summer LST by District (°C)</h3>
                 <div class="chart-container">
@@ -1059,7 +998,7 @@
                 </div>
             </div>
             <div class="analytics-card">
-                <h3><i class="fa-solid fa-circle-nodes"></i> Flood Points vs. Concretization Rate</h3>
+                <h3><i class="fa-solid fa-circle-nodes"></i> Flood Points vs. Population Density</h3>
                 <div class="chart-container">
                     <canvas id="chart-urban-scatter"></canvas>
                 </div>
@@ -1069,7 +1008,7 @@
         <!-- Dynamic Data Table Card -->
         <div class="data-card">
             <div class="data-header">
-                <h3 id="table-title"><i class="fa-solid fa-table"></i> District-Level Land Cover Statistics</h3>
+                <h3 id="table-title"><i class="fa-solid fa-table"></i> District Environmental & Quality Indicators</h3>
                 <div class="search-bar-container">
                     <input type="text" id="table-search" class="search-bar" placeholder="Search district..."
                         onkeyup="filterTable()">
@@ -1090,11 +1029,8 @@
         <!-- Technical Specification & Analysis Info -->
         <div class="tabs-card">
             <div class="tab-headers">
-                <button class="tab-header active" onclick="switchTechTab(event, 'tech-overview')">Ecological
-                    Context</button>
-                <button class="tab-header" onclick="switchTechTab(event, 'tech-gis')">GIS & Classifier Specs</button>
-                <button class="tab-header" onclick="switchTechTab(event, 'tech-environment')">Rain Drainage & Heat
-                    Island</button>
+                <button class="tab-header active" onclick="switchTechTab(event, 'tech-overview')">Ecological Context</button>
+                <button class="tab-header" onclick="switchTechTab(event, 'tech-environment')">Environmental & Urban Metrics</button>
             </div>
 
             <div id="tech-overview" class="tab-content active">
@@ -1106,53 +1042,9 @@
                 </div>
                 <div class="method-step">
                     <h4>Drainage Degradation & Flooding</h4>
-                    <p>Hanoi suffers from severe flash floods in the rainy season. Areas with concretization rates
-                        exceeding 70% (e.g. Hoang Mai, Dong Da, Cau Giay) show the highest frequency of flooding points.
-                        Soil impermeability prevents stormwater infiltration, overloading the artificial drainage pipes.
+                    <p>Hanoi suffers from severe flash floods in the rainy season. Areas with high population density and built-up core structures show the highest frequency of flooding points.
+                        Impermeable surfaces prevent stormwater infiltration, overloading the artificial drainage pipes.
                     </p>
-                </div>
-            </div>
-
-            <div id="tech-gis" class="tab-content">
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">Random Forest classifier
-                    trains on Google Earth Engine using Sentinel-2 imagery (10m res) and JAXA ALOS DEM topography.
-                    Overall Accuracy is 83.48% with a Kappa Coefficient of 0.7930.</p>
-                <div class="table-wrapper">
-                    <table class="spec-table">
-                        <thead>
-                            <tr>
-                                <th>Predictor Category</th>
-                                <th>Engineered Features</th>
-                                <th>Spectral / Physical Scope</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Spectral Bands</td>
-                                <td>B2, B3, B4, B8, B11, B12</td>
-                                <td>Visible, NIR, and Short-Wave Infrared bands tracking soil, vegetation and built
-                                    structures.</td>
-                            </tr>
-                            <tr>
-                                <td>Indices</td>
-                                <td>NDVI, NDBI, MNDWI, EVI, BSI</td>
-                                <td>Vegetation vitality, concrete indexes, water moisture, and bare soil spectral
-                                    profiles.</td>
-                            </tr>
-                            <tr>
-                                <td>Topography</td>
-                                <td>Elevation, Slope</td>
-                                <td>Derived from ALOS AW3D30 to discriminate highlands from low-elevation floodplains.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Texture & Time</td>
-                                <td>B8_contrast, NDVI_stdDev</td>
-                                <td>GLCM contrast captures canopy roughness; seasonal standard deviation filters
-                                    cropland.</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
 
@@ -1180,50 +1072,44 @@
     <!-- Interactive Logic Script -->
     <script>
         // 1. Data Database (Augmented with Env & Urban metrics)
-        const lulcData = [
-            { "Code_Vung": 1001, "District_Name": "Ba Dinh", "Water_Area_km2": 1.2050656228, "Urban_Area_km2": 6.6633963733, "Agriculture_Area_km2": 0.4354988414, "Greenery_Area_km2": 2.3088958868, "Bare_Land_Area_km2": 0.8429638026, "Total_LULC_Area_km2": 11.455820527, "aqi": 132, "lst": 37.6, "waste": 420, "pop_density": 24200, "flood_points": 8 },
-            { "Code_Vung": 1002, "District_Name": "Hoan Kiem", "Water_Area_km2": 0.7957105679, "Urban_Area_km2": 3.559522105, "Agriculture_Area_km2": 0.1221516428, "Greenery_Area_km2": 1.014627487, "Bare_Land_Area_km2": 0.4354755303, "Total_LULC_Area_km2": 5.9274873329, "aqi": 135, "lst": 38.2, "waste": 220, "pop_density": 25800, "flood_points": 6 },
-            { "Code_Vung": 1003, "District_Name": "Tay Ho", "Water_Area_km2": 8.6040226243, "Urban_Area_km2": 8.8122077623, "Agriculture_Area_km2": 2.1329748351, "Greenery_Area_km2": 6.5567783465, "Bare_Land_Area_km2": 1.6135011493, "Total_LULC_Area_km2": 27.7194847174, "aqi": 110, "lst": 33.5, "waste": 250, "pop_density": 6300, "flood_points": 4 },
-            { "Code_Vung": 1004, "District_Name": "Long Bien", "Water_Area_km2": 7.2978777146, "Urban_Area_km2": 22.9618190584, "Agriculture_Area_km2": 2.6326535539, "Greenery_Area_km2": 19.9198852793, "Bare_Land_Area_km2": 4.0857863633, "Total_LULC_Area_km2": 56.8980219695, "aqi": 118, "lst": 35.6, "waste": 410, "pop_density": 5700, "flood_points": 5 },
-            { "Code_Vung": 1005, "District_Name": "Cau Giay", "Water_Area_km2": 0.6553275144, "Urban_Area_km2": 9.1061818729, "Agriculture_Area_km2": 1.4421799116, "Greenery_Area_km2": 1.525967322, "Bare_Land_Area_km2": 3.1775068518, "Total_LULC_Area_km2": 15.9071634728, "aqi": 145, "lst": 39.1, "waste": 510, "pop_density": 23500, "flood_points": 12 },
-            { "Code_Vung": 1006, "District_Name": "Dong Da", "Water_Area_km2": 0.3346566153, "Urban_Area_km2": 7.1158300275, "Agriculture_Area_km2": 0.2434807511, "Greenery_Area_km2": 0.4696416965, "Bare_Land_Area_km2": 0.9857095506, "Total_LULC_Area_km2": 9.149318641, "aqi": 142, "lst": 39.5, "waste": 650, "pop_density": 37800, "flood_points": 14 },
-            { "Code_Vung": 1007, "District_Name": "Hai Ba Trung", "Water_Area_km2": 2.2015266261, "Urban_Area_km2": 8.4023346714, "Agriculture_Area_km2": 0.1795467496, "Greenery_Area_km2": 0.8374202907, "Bare_Land_Area_km2": 1.2530884202, "Total_LULC_Area_km2": 12.8739167581, "aqi": 138, "lst": 38.9, "waste": 490, "pop_density": 29500, "flood_points": 7 },
-            { "Code_Vung": 1008, "District_Name": "Hoang Mai", "Water_Area_km2": 4.7605607593, "Urban_Area_km2": 18.3558403288, "Agriculture_Area_km2": 1.9240280284, "Greenery_Area_km2": 8.9923170553, "Bare_Land_Area_km2": 3.9456976216, "Total_LULC_Area_km2": 37.9784437933, "aqi": 136, "lst": 38.5, "waste": 620, "pop_density": 11200, "flood_points": 15 },
-            { "Code_Vung": 1009, "District_Name": "Thanh Xuan", "Water_Area_km2": 0.3973614148, "Urban_Area_km2": 5.582232504, "Agriculture_Area_km2": 0.2348626958, "Greenery_Area_km2": 0.8090458969, "Bare_Land_Area_km2": 1.3269943142, "Total_LULC_Area_km2": 8.3504968257, "aqi": 140, "lst": 39.4, "waste": 480, "pop_density": 31200, "flood_points": 11 },
-            { "Code_Vung": 1016, "District_Name": "Soc Son", "Water_Area_km2": 11.6512141283, "Urban_Area_km2": 52.5364153469, "Agriculture_Area_km2": 90.1112421657, "Greenery_Area_km2": 140.5369799168, "Bare_Land_Area_km2": 9.2128860523, "Total_LULC_Area_km2": 304.0487376101, "aqi": 75, "lst": 30.5, "waste": 240, "pop_density": 1100, "flood_points": 1 },
-            { "Code_Vung": 1017, "District_Name": "Dong Anh", "Water_Area_km2": 13.0818304733, "Urban_Area_km2": 49.4663372718, "Agriculture_Area_km2": 46.4603976831, "Greenery_Area_km2": 72.4292889371, "Bare_Land_Area_km2": 9.0238954203, "Total_LULC_Area_km2": 190.4617497856, "aqi": 108, "lst": 33.5, "waste": 380, "pop_density": 2100, "flood_points": 3 },
-            { "Code_Vung": 1018, "District_Name": "Gia Lam", "Water_Area_km2": 12.2781385455, "Urban_Area_km2": 30.1604884323, "Agriculture_Area_km2": 17.6083663229, "Greenery_Area_km2": 53.1619264689, "Bare_Land_Area_km2": 5.1786600151, "Total_LULC_Area_km2": 118.3875797847, "aqi": 105, "lst": 34.0, "waste": 320, "pop_density": 2800, "flood_points": 3 },
-            { "Code_Vung": 1021, "District_Name": "Bac Tu Liem", "Water_Area_km2": 3.1025419313, "Urban_Area_km2": 15.2224893896, "Agriculture_Area_km2": 4.8038660262, "Greenery_Area_km2": 15.6050670716, "Bare_Land_Area_km2": 4.6160355813, "Total_LULC_Area_km2": 43.35, "aqi": 120, "lst": 35.8, "waste": 240, "pop_density": 7800, "flood_points": 5 },
-            { "Code_Vung": 1022, "District_Name": "Nam Tu Liem", "Water_Area_km2": 2.1517, "Urban_Area_km2": 13.5, "Agriculture_Area_km2": 3.05, "Greenery_Area_km2": 10.2, "Bare_Land_Area_km2": 2.4654591718, "Total_LULC_Area_km2": 31.3671591719, "aqi": 128, "lst": 36.4, "waste": 210, "pop_density": 8300, "flood_points": 4 },
-            { "Code_Vung": 1020, "District_Name": "Thanh Tri", "Water_Area_km2": 6.5335646579, "Urban_Area_km2": 26.0810914042, "Agriculture_Area_km2": 12.9153439391, "Greenery_Area_km2": 20.2311605592, "Bare_Land_Area_km2": 4.680888071, "Total_LULC_Area_km2": 70.4420486313, "aqi": 115, "lst": 34.8, "waste": 220, "pop_density": 4500, "flood_points": 6 },
-            { "Code_Vung": 1250, "District_Name": "Me Linh", "Water_Area_km2": 13.687983218, "Urban_Area_km2": 27.2627693875, "Agriculture_Area_km2": 39.0215266086, "Greenery_Area_km2": 58.4790291131, "Bare_Land_Area_km2": 5.1532953404, "Total_LULC_Area_km2": 143.6046036677, "aqi": 95, "lst": 32.6, "waste": 180, "pop_density": 1700, "flood_points": 2 },
-            { "Code_Vung": 1268, "District_Name": "Ha Dong", "Water_Area_km2": 0.9483886395, "Urban_Area_km2": 17.2212236958, "Agriculture_Area_km2": 3.9251588497, "Greenery_Area_km2": 9.0194060691, "Bare_Land_Area_km2": 3.0527444529, "Total_LULC_Area_km2": 34.1669217069, "aqi": 128, "lst": 37.8, "waste": 580, "pop_density": 8200, "flood_points": 9 },
-            { "Code_Vung": 1269, "District_Name": "Son Tay", "Water_Area_km2": 12.3781581988, "Urban_Area_km2": 20.0473277829, "Agriculture_Area_km2": 14.3595121607, "Greenery_Area_km2": 73.3415932438, "Bare_Land_Area_km2": 2.6172715363, "Total_LULC_Area_km2": 122.7438629225, "aqi": 88, "lst": 31.2, "waste": 110, "pop_density": 1500, "flood_points": 1 },
-            { "Code_Vung": 1271, "District_Name": "Ba Vi", "Water_Area_km2": 39.5024977982, "Urban_Area_km2": 43.1188200354, "Agriculture_Area_km2": 63.2890165346, "Greenery_Area_km2": 265.8256601131, "Bare_Land_Area_km2": 7.4331775115, "Total_LULC_Area_km2": 419.1691719929, "aqi": 65, "lst": 28.5, "waste": 200, "pop_density": 680, "flood_points": 1 },
-            { "Code_Vung": 1272, "District_Name": "Phuc Tho", "Water_Area_km2": 8.3647434272, "Urban_Area_km2": 21.8481386388, "Agriculture_Area_km2": 25.6690498182, "Greenery_Area_km2": 60.0933821725, "Bare_Land_Area_km2": 2.5360078286, "Total_LULC_Area_km2": 118.5113218853, "aqi": 78, "lst": 31.5, "waste": 110, "pop_density": 1600, "flood_points": 1 },
-            { "Code_Vung": 1273, "District_Name": "Dan Phuong", "Water_Area_km2": 8.7442601887, "Urban_Area_km2": 18.4451001468, "Agriculture_Area_km2": 6.6787779975, "Greenery_Area_km2": 36.8424176693, "Bare_Land_Area_km2": 2.0783923918, "Total_LULC_Area_km2": 72.7889483941, "aqi": 82, "lst": 32.2, "waste": 95, "pop_density": 2400, "flood_points": 1 },
-            { "Code_Vung": 1274, "District_Name": "Hoai Duc", "Water_Area_km2": 1.4613129678, "Urban_Area_km2": 28.32571933, "Agriculture_Area_km2": 13.9769288856, "Greenery_Area_km2": 35.6240652275, "Bare_Land_Area_km2": 4.5565099214, "Total_LULC_Area_km2": 83.9445363322, "aqi": 112, "lst": 33.8, "waste": 210, "pop_density": 3200, "flood_points": 4 },
-            { "Code_Vung": 1275, "District_Name": "Quoc Oai", "Water_Area_km2": 7.9548964463, "Urban_Area_km2": 25.8420079539, "Agriculture_Area_km2": 45.7668837162, "Greenery_Area_km2": 67.3529228494, "Bare_Land_Area_km2": 4.3350938194, "Total_LULC_Area_km2": 151.2518047852, "aqi": 80, "lst": 31.8, "waste": 150, "pop_density": 1500, "flood_points": 1 },
-            { "Code_Vung": 1276, "District_Name": "Thach That", "Water_Area_km2": 5.0501302875, "Urban_Area_km2": 29.8667811264, "Agriculture_Area_km2": 32.2562045843, "Greenery_Area_km2": 100.7696157752, "Bare_Land_Area_km2": 4.8914182946, "Total_LULC_Area_km2": 172.834150068, "aqi": 85, "lst": 32.5, "waste": 190, "pop_density": 1800, "flood_points": 2 },
-            { "Code_Vung": 1277, "District_Name": "Chuong My", "Water_Area_km2": 15.2118516356, "Urban_Area_km2": 42.7815938594, "Agriculture_Area_km2": 82.5918918402, "Greenery_Area_km2": 83.3704043075, "Bare_Land_Area_km2": 5.3452488136, "Total_LULC_Area_km2": 229.3009904562, "aqi": 82, "lst": 31.2, "waste": 220, "pop_density": 1400, "flood_points": 2 },
-            { "Code_Vung": 1278, "District_Name": "Thanh Oai", "Water_Area_km2": 7.0508812646, "Urban_Area_km2": 27.2034027041, "Agriculture_Area_km2": 61.7565985709, "Greenery_Area_km2": 26.2556480764, "Bare_Land_Area_km2": 3.6956917087, "Total_LULC_Area_km2": 125.9622223246, "aqi": 88, "lst": 32.8, "waste": 140, "pop_density": 1600, "flood_points": 2 },
-            { "Code_Vung": 1279, "District_Name": "Thuong Tin", "Water_Area_km2": 11.1652856442, "Urban_Area_km2": 35.1022584188, "Agriculture_Area_km2": 53.3609916528, "Greenery_Area_km2": 33.4084378793, "Bare_Land_Area_km2": 6.8367646384, "Total_LULC_Area_km2": 139.8737382335, "aqi": 92, "lst": 33.2, "waste": 180, "pop_density": 2000, "flood_points": 2 },
-            { "Code_Vung": 1280, "District_Name": "Phu Xuyen", "Water_Area_km2": 21.5783559979, "Urban_Area_km2": 28.1172951095, "Agriculture_Area_km2": 101.3005393239, "Greenery_Area_km2": 24.1314013505, "Bare_Land_Area_km2": 5.022547465, "Total_LULC_Area_km2": 180.1501392469, "aqi": 85, "lst": 32.0, "waste": 120, "pop_density": 1300, "flood_points": 1 },
-            { "Code_Vung": 1281, "District_Name": "Ung Hoa", "Water_Area_km2": 19.1074149785, "Urban_Area_km2": 25.0024994432, "Agriculture_Area_km2": 112.8782492766, "Greenery_Area_km2": 17.5084386283, "Bare_Land_Area_km2": 4.6251500965, "Total_LULC_Area_km2": 179.1217524232, "aqi": 78, "lst": 31.5, "waste": 130, "pop_density": 1200, "flood_points": 1 },
-            { "Code_Vung": 1282, "District_Name": "My Duc", "Water_Area_km2": 26.5556972871, "Urban_Area_km2": 25.4667641612, "Agriculture_Area_km2": 86.4857622764, "Greenery_Area_km2": 90.0318190965, "Bare_Land_Area_km2": 6.779685543, "Total_LULC_Area_km2": 235.3197283643, "aqi": 70, "lst": 29.8, "waste": 130, "pop_density": 950, "flood_points": 1 }
+        const districtData = [
+            { "Code_Vung": 1001, "District_Name": "Ba Dinh", "Area_km2": 11.46, "aqi": 132, "lst": 37.6, "waste": 420, "pop_density": 24200, "flood_points": 8 },
+            { "Code_Vung": 1002, "District_Name": "Hoan Kiem", "Area_km2": 5.93, "aqi": 135, "lst": 38.2, "waste": 220, "pop_density": 25800, "flood_points": 6 },
+            { "Code_Vung": 1003, "District_Name": "Tay Ho", "Area_km2": 27.72, "aqi": 110, "lst": 33.5, "waste": 250, "pop_density": 6300, "flood_points": 4 },
+            { "Code_Vung": 1004, "District_Name": "Long Bien", "Area_km2": 56.9, "aqi": 118, "lst": 35.6, "waste": 410, "pop_density": 5700, "flood_points": 5 },
+            { "Code_Vung": 1005, "District_Name": "Cau Giay", "Area_km2": 15.91, "aqi": 145, "lst": 39.1, "waste": 510, "pop_density": 23500, "flood_points": 12 },
+            { "Code_Vung": 1006, "District_Name": "Dong Da", "Area_km2": 9.15, "aqi": 142, "lst": 39.5, "waste": 650, "pop_density": 37800, "flood_points": 14 },
+            { "Code_Vung": 1007, "District_Name": "Hai Ba Trung", "Area_km2": 12.87, "aqi": 138, "lst": 38.9, "waste": 490, "pop_density": 29500, "flood_points": 7 },
+            { "Code_Vung": 1008, "District_Name": "Hoang Mai", "Area_km2": 37.98, "aqi": 136, "lst": 38.5, "waste": 620, "pop_density": 11200, "flood_points": 15 },
+            { "Code_Vung": 1009, "District_Name": "Thanh Xuan", "Area_km2": 8.35, "aqi": 140, "lst": 39.4, "waste": 480, "pop_density": 31200, "flood_points": 11 },
+            { "Code_Vung": 1016, "District_Name": "Soc Son", "Area_km2": 304.05, "aqi": 75, "lst": 30.5, "waste": 240, "pop_density": 1100, "flood_points": 1 },
+            { "Code_Vung": 1017, "District_Name": "Dong Anh", "Area_km2": 190.46, "aqi": 108, "lst": 33.5, "waste": 380, "pop_density": 2100, "flood_points": 3 },
+            { "Code_Vung": 1018, "District_Name": "Gia Lam", "Area_km2": 118.39, "aqi": 105, "lst": 34.0, "waste": 320, "pop_density": 2800, "flood_points": 3 },
+            { "Code_Vung": 1021, "District_Name": "Bac Tu Liem", "Area_km2": 43.35, "aqi": 120, "lst": 35.8, "waste": 240, "pop_density": 7800, "flood_points": 5 },
+            { "Code_Vung": 1022, "District_Name": "Nam Tu Liem", "Area_km2": 31.37, "aqi": 128, "lst": 36.4, "waste": 210, "pop_density": 8300, "flood_points": 4 },
+            { "Code_Vung": 1020, "District_Name": "Thanh Tri", "Area_km2": 70.44, "aqi": 115, "lst": 34.8, "waste": 220, "pop_density": 4500, "flood_points": 6 },
+            { "Code_Vung": 1250, "District_Name": "Me Linh", "Area_km2": 143.6, "aqi": 95, "lst": 32.6, "waste": 180, "pop_density": 1700, "flood_points": 2 },
+            { "Code_Vung": 1268, "District_Name": "Ha Dong", "Area_km2": 34.17, "aqi": 128, "lst": 37.8, "waste": 580, "pop_density": 8200, "flood_points": 9 },
+            { "Code_Vung": 1269, "District_Name": "Son Tay", "Area_km2": 122.74, "aqi": 88, "lst": 31.2, "waste": 110, "pop_density": 1500, "flood_points": 1 },
+            { "Code_Vung": 1271, "District_Name": "Ba Vi", "Area_km2": 419.17, "aqi": 65, "lst": 28.5, "waste": 200, "pop_density": 680, "flood_points": 1 },
+            { "Code_Vung": 1272, "District_Name": "Phuc Tho", "Area_km2": 118.51, "aqi": 78, "lst": 31.5, "waste": 110, "pop_density": 1600, "flood_points": 1 },
+            { "Code_Vung": 1273, "District_Name": "Dan Phuong", "Area_km2": 72.79, "aqi": 82, "lst": 32.2, "waste": 95, "pop_density": 2400, "flood_points": 1 },
+            { "Code_Vung": 1274, "District_Name": "Hoai Duc", "Area_km2": 83.94, "aqi": 112, "lst": 33.8, "waste": 210, "pop_density": 3200, "flood_points": 4 },
+            { "Code_Vung": 1275, "District_Name": "Quoc Oai", "Area_km2": 151.25, "aqi": 80, "lst": 31.8, "waste": 150, "pop_density": 1500, "flood_points": 1 },
+            { "Code_Vung": 1276, "District_Name": "Thach That", "Area_km2": 172.83, "aqi": 85, "lst": 32.5, "waste": 190, "pop_density": 1800, "flood_points": 2 },
+            { "Code_Vung": 1277, "District_Name": "Chuong My", "Area_km2": 229.3, "aqi": 82, "lst": 31.2, "waste": 220, "pop_density": 1400, "flood_points": 2 },
+            { "Code_Vung": 1278, "District_Name": "Thanh Oai", "Area_km2": 125.96, "aqi": 88, "lst": 32.8, "waste": 140, "pop_density": 1600, "flood_points": 2 },
+            { "Code_Vung": 1279, "District_Name": "Thuong Tin", "Area_km2": 139.87, "aqi": 92, "lst": 33.2, "waste": 180, "pop_density": 2000, "flood_points": 2 },
+            { "Code_Vung": 1280, "District_Name": "Phu Xuyen", "Area_km2": 180.15, "aqi": 85, "lst": 32.0, "waste": 120, "pop_density": 1300, "flood_points": 1 },
+            { "Code_Vung": 1281, "District_Name": "Ung Hoa", "Area_km2": 179.12, "aqi": 78, "lst": 31.5, "waste": 130, "pop_density": 1200, "flood_points": 1 },
+            { "Code_Vung": 1282, "District_Name": "My Duc", "Area_km2": 235.32, "aqi": 70, "lst": 29.8, "waste": 130, "pop_density": 950, "flood_points": 1 }
         ];
 
         // 2. Metropolitan Calculations
         const metroTotals = {
             name: "Hanoi Overview",
             subtitle: "Aggregated metropolitan statistics",
-            water: 0,
-            urban: 0,
-            ag: 0,
-            green: 0,
-            bare: 0,
             total: 0,
-            // Env & Urban metrics averages/totals
             aqi: 0,
             lst: 0,
             waste: 0,
@@ -1232,28 +1118,22 @@
             population: 0
         };
 
-        lulcData.forEach(d => {
-            metroTotals.water += d.Water_Area_km2;
-            metroTotals.urban += d.Urban_Area_km2;
-            metroTotals.ag += d.Agriculture_Area_km2;
-            metroTotals.green += d.Greenery_Area_km2;
-            metroTotals.bare += d.Bare_Land_Area_km2;
-            metroTotals.total += d.Total_LULC_Area_km2;
-
+        districtData.forEach(d => {
+            metroTotals.total += d.Area_km2;
             metroTotals.aqi += d.aqi;
             metroTotals.lst += d.lst;
             metroTotals.waste += d.waste;
             metroTotals.flood_points += d.flood_points;
-            metroTotals.population += (d.pop_density * d.Total_LULC_Area_km2);
+            metroTotals.population += (d.pop_density * d.Area_km2);
         });
 
         // Compute averages
-        metroTotals.aqi = Math.round(metroTotals.aqi / lulcData.length);
-        metroTotals.lst = (metroTotals.lst / lulcData.length).toFixed(1);
+        metroTotals.aqi = Math.round(metroTotals.aqi / districtData.length);
+        metroTotals.lst = (metroTotals.lst / districtData.length).toFixed(1);
         metroTotals.pop_density = Math.round(metroTotals.population / metroTotals.total);
 
         // 3. Tab Theme Control State
-        let currentTheme = 'lulc';
+        let currentTheme = 'env';
         let selectedDistrictRecord = null; // null means metro overview
 
         // Leaflet base config
@@ -1289,16 +1169,7 @@
         };
 
         legendControl.update = function () {
-            if (currentTheme === 'lulc') {
-                this._div.innerHTML = `
-                    <h4>LULC Cover Type</h4>
-                    <div class="legend-item"><span class="legend-color" style="background:var(--color-water)"></span> Water (Nước)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:var(--color-urban)"></span> Urban (Đô thị)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:var(--color-agriculture)"></span> Agriculture (Nông nghiệp)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:var(--color-greenery)"></span> Greenery (Cây xanh)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:var(--color-bareland)"></span> Bare Land (Đất trống)</div>
-                `;
-            } else if (currentTheme === 'env') {
+            if (currentTheme === 'env') {
                 this._div.innerHTML = `
                     <h4>Air Quality (AQI)</h4>
                     <div class="legend-item"><span class="legend-color" style="background:#10b981"></span> &lt; 80 Good</div>
@@ -1309,12 +1180,12 @@
                 `;
             } else if (currentTheme === 'urban') {
                 this._div.innerHTML = `
-                    <h4>Concretization Rate</h4>
-                    <div class="legend-item"><span class="legend-color" style="background:#15803d"></span> &lt; 15% (Rural Forest)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:#a3e635"></span> 15% - 30% (Suburban)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:#facc15"></span> 30% - 50% (Transition)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:#f97316"></span> 50% - 70% (High Urban)</div>
-                    <div class="legend-item"><span class="legend-color" style="background:#dc2626"></span> &gt; 70% (Dense Core)</div>
+                    <h4>Population Density</h4>
+                    <div class="legend-item"><span class="legend-color" style="background:#15803d"></span> &lt; 2k /km² (Low)</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#a3e635"></span> 2k - 5k /km² (Moderate)</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#facc15"></span> 5k - 10k /km² (High)</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#f97316"></span> 10k - 20k /km² (Very High)</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#dc2626"></span> &gt; 20k /km² (Critical Core)</div>
                 `;
             }
         };
@@ -1328,17 +1199,17 @@
                         aqi < 140 ? '#f97316' : '#ef4444';
         }
 
-        function getUrbanColor(concreteRate) {
-            return concreteRate < 15 ? '#15803d' :
-                concreteRate < 30 ? '#a3e635' :
-                    concreteRate < 50 ? '#facc15' :
-                        concreteRate < 70 ? '#f97316' : '#dc2626';
+        function getUrbanColor(density) {
+            return density < 2000 ? '#15803d' :
+                density < 5000 ? '#a3e635' :
+                    density < 10000 ? '#facc15' :
+                        density < 20000 ? '#f97316' : '#dc2626';
         }
 
         // Map styling per theme
         function styleFeature(feature) {
             const code = feature.properties.Code_vung;
-            const record = lulcData.find(d => String(d.Code_Vung).padStart(5, '0') === String(code).padStart(5, '0'));
+            const record = districtData.find(d => String(d.Code_Vung).padStart(5, '0') === String(code).padStart(5, '0'));
 
             let fillColor = 'transparent';
             let fillOpacity = 0.05;
@@ -1350,8 +1221,7 @@
                     fillColor = getEnvColor(record.aqi);
                     fillOpacity = 0.55;
                 } else if (currentTheme === 'urban') {
-                    const rate = (record.Urban_Area_km2 / record.Total_LULC_Area_km2) * 100;
-                    fillColor = getUrbanColor(rate);
+                    fillColor = getUrbanColor(record.pop_density);
                     fillOpacity = 0.55;
                 }
             }
@@ -1360,7 +1230,7 @@
             if (selectedDistrictRecord && record && record.Code_Vung === selectedDistrictRecord.Code_Vung) {
                 color = '#3b82f6';
                 weight = 3;
-                fillOpacity = currentTheme === 'lulc' ? 0.2 : fillOpacity + 0.15;
+                fillOpacity = fillOpacity + 0.15;
             }
 
             return {
@@ -1378,22 +1248,19 @@
         function highlightFeature(e) {
             const layer = e.target;
             const code = layer.feature.properties.Code_vung;
-            const record = lulcData.find(d => String(d.Code_Vung).padStart(5, '0') === String(code).padStart(5, '0'));
+            const record = districtData.find(d => String(d.Code_Vung).padStart(5, '0') === String(code).padStart(5, '0'));
 
             layer.setStyle({
                 weight: 2.5,
                 color: '#60a5fa',
-                fillOpacity: currentTheme === 'lulc' ? 0.15 : 0.75
+                fillOpacity: 0.75
             });
             layer.bringToFront();
 
             // Hover tooltip
             if (record) {
                 let hoverHTML = `<strong>${record.District_Name}</strong>`;
-                if (currentTheme === 'lulc') {
-                    const urbRate = ((record.Urban_Area_km2 / record.Total_LULC_Area_km2) * 100).toFixed(1);
-                    hoverHTML += `<br/>Urbanization: ${urbRate}%`;
-                } else if (currentTheme === 'env') {
+                if (currentTheme === 'env') {
                     hoverHTML += `<br/>AQI: ${record.aqi}<br/>Summer LST: ${record.lst}°C`;
                 } else {
                     hoverHTML += `<br/>Density: ${record.pop_density.toLocaleString()} /km²<br/>Flood Points: ${record.flood_points}`;
@@ -1412,7 +1279,7 @@
                 mouseout: resetHighlight,
                 click: function (e) {
                     const code = feature.properties.Code_vung;
-                    const record = lulcData.find(d => String(d.Code_Vung).padStart(5, '0') === String(code).padStart(5, '0'));
+                    const record = districtData.find(d => String(d.Code_Vung).padStart(5, '0') === String(code).padStart(5, '0'));
                     selectDistrict(record);
                     map.fitBounds(e.target.getBounds());
                 }
@@ -1428,11 +1295,6 @@
         }
 
         // 5. Chart JS Objects
-        let sidePieChartObj = null;
-        let sideLstCoverChartObj = null;
-
-        let chartLulcBar = null;
-        let chartLulcPie = null;
         let chartEnvLst = null;
         let chartEnvWaste = null;
         let chartUrbanDensity = null;
@@ -1449,82 +1311,6 @@
                 ? "Aggregated metropolitan statistics"
                 : `District Code: ${String(record.Code_Vung).padStart(5, '0')}`;
             document.getElementById('btn-reset').style.display = isMetro ? 'none' : 'block';
-
-            const total = record.Total_LULC_Area_km2 || record.total;
-            const urban = record.Urban_Area_km2 || record.urban;
-            const water = record.Water_Area_km2 || record.water;
-            const ag = record.Agriculture_Area_km2 || record.ag;
-            const green = record.Greenery_Area_km2 || record.green;
-            const bare = record.Bare_Land_Area_km2 || record.bare;
-            const urbanPct = (urban / total) * 100;
-
-            // --- LULC Side Content ---
-            document.getElementById('radial-pct').innerText = urbanPct.toFixed(1) + "%";
-            document.getElementById('radial-outer').style.background = `conic-gradient(var(--success) ${urbanPct}%, rgba(255, 255, 255, 0.05) 0deg)`;
-
-            const lulcStatsHTML = `
-                <div class="stat-row">
-                    <span class="stat-label"><span class="stat-color-dot" style="background:var(--color-water)"></span>Water (Mặt nước)</span>
-                    <span class="stat-value">${water.toFixed(2)} km² <span class="stat-pct">(${((water / total) * 100).toFixed(1)}%)</span></span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label"><span class="stat-color-dot" style="background:var(--color-urban)"></span>Urban / Built-up (Xây dựng)</span>
-                    <span class="stat-value">${urban.toFixed(2)} km² <span class="stat-pct">(${urbanPct.toFixed(1)}%)</span></span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label"><span class="stat-color-dot" style="background:var(--color-agriculture)"></span>Agriculture (Nông nghiệp)</span>
-                    <span class="stat-value">${ag.toFixed(2)} km² <span class="stat-pct">(${((ag / total) * 100).toFixed(1)}%)</span></span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label"><span class="stat-color-dot" style="background:var(--color-greenery)"></span>Greenery (Cây xanh)</span>
-                    <span class="stat-value">${green.toFixed(2)} km² <span class="stat-pct">(${((green / total) * 100).toFixed(1)}%)</span></span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label"><span class="stat-color-dot" style="background:var(--color-bareland)"></span>Bare Land (Đất trống)</span>
-                    <span class="stat-value">${bare.toFixed(2)} km² <span class="stat-pct">(${((bare / total) * 100).toFixed(1)}%)</span></span>
-                </div>
-                <div class="stat-row" style="font-weight: 700; border-bottom: none; margin-top: 5px;">
-                    <span class="stat-label" style="color:var(--text-main)">Total Area</span>
-                    <span class="stat-value">${total.toFixed(2)} km²</span>
-                </div>
-            `;
-            document.getElementById('lulc-stats-rows').innerHTML = lulcStatsHTML;
-
-            // Side Pie Chart LULC
-            const lulcDataArr = [water, urban, ag, green, bare];
-            if (sidePieChartObj) {
-                sidePieChartObj.data.datasets[0].data = lulcDataArr;
-                sidePieChartObj.update();
-            } else {
-                const ctx = document.getElementById('sidePieChart').getContext('2d');
-                sidePieChartObj = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Water', 'Urban', 'Agriculture', 'Greenery', 'Bare Land'],
-                        datasets: [{
-                            data: lulcDataArr,
-                            backgroundColor: ['#0000ff', '#ff0000', '#ffff00', '#008000', '#a0522d'],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: {
-                                callbacks: {
-                                    label: function (context) {
-                                        const value = context.raw || 0;
-                                        const pct = ((value / total) * 100).toFixed(1);
-                                        return ` ${context.label}: ${value.toFixed(2)} km² (${pct}%)`;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
 
             // --- Environmental Side Content ---
             const aqi = record.aqi;
@@ -1549,176 +1335,61 @@
             document.getElementById('env-lst-val').innerText = (isMetro ? metroTotals.lst : record.lst) + " °C";
             document.getElementById('env-waste-val').innerText = record.waste.toLocaleString() + " tons/day";
 
-            const greeneryRatio = ((green / total) * 100).toFixed(1);
-            document.getElementById('env-greenspace-val').innerText = greeneryRatio + "%";
-
-            // LST by Cover type side Bar chart
-            // Base temperature profiles modified slightly by local average deviation
-            const localLst = isMetro ? 34.0 : record.lst;
-            const diff = localLst - 34.0;
-            const coverTemps = [27.0 + diff, 39.0 + diff * 1.1, 32.0 + diff * 0.9, 29.0 + diff * 0.8, 35.0 + diff];
-
-            if (sideLstCoverChartObj) {
-                sideLstCoverChartObj.data.datasets[0].data = coverTemps;
-                sideLstCoverChartObj.update();
-            } else {
-                const ctx = document.getElementById('sideLstCoverChart').getContext('2d');
-                sideLstCoverChartObj = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Water', 'Urban', 'Agri', 'Green', 'Bare'],
-                        datasets: [{
-                            data: coverTemps,
-                            backgroundColor: ['#0000ff', '#ff0000', '#ffff00', '#008000', '#a0522d'],
-                            borderRadius: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                min: 20,
-                                max: 45,
-                                ticks: { color: '#9ca3af', font: { size: 9 }, callback: val => val + '°C' },
-                                grid: { color: 'rgba(255,255,255,0.05)' }
-                            },
-                            x: {
-                                ticks: { color: '#9ca3af', font: { size: 9 } },
-                                grid: { display: false }
-                            }
-                        },
-                        plugins: {
-                            legend: { display: false }
-                        }
-                    }
-                });
-            }
-
             // --- Urban Pressure Side Content ---
             document.getElementById('urban-density-val').innerText = record.pop_density.toLocaleString() + " /km²";
-            document.getElementById('urban-concrete-val').innerText = urbanPct.toFixed(1) + "%";
             document.getElementById('urban-floods-val').innerText = record.flood_points + " points";
 
-            const concreteFill = document.getElementById('urban-concrete-fill');
-            const concreteLbl = document.getElementById('urban-concrete-lbl');
-            concreteFill.style.width = urbanPct + "%";
+            const densityFill = document.getElementById('urban-density-fill');
+            const densityLbl = document.getElementById('urban-density-lbl');
+            const densityPct = Math.min((record.pop_density / 35000) * 100, 100);
+            densityFill.style.width = densityPct + "%";
 
-            if (urbanPct < 15) {
-                concreteLbl.innerText = "Low (Rural)";
-                concreteFill.style.backgroundColor = '#15803d';
-            } else if (urbanPct < 30) {
-                concreteLbl.innerText = "Suburban";
-                concreteFill.style.backgroundColor = '#a3e635';
-            } else if (urbanPct < 50) {
-                concreteLbl.innerText = "Transitioning";
-                concreteFill.style.backgroundColor = '#facc15';
-            } else if (urbanPct < 70) {
-                concreteLbl.innerText = "High Urbanization";
-                concreteFill.style.backgroundColor = '#f97316';
+            if (record.pop_density < 2000) {
+                densityLbl.innerText = "Low (< 2k)";
+                densityFill.style.backgroundColor = '#10b981';
+            } else if (record.pop_density < 10000) {
+                densityLbl.innerText = "Moderate (2k - 10k)";
+                densityFill.style.backgroundColor = '#ea580c';
             } else {
-                concreteLbl.innerText = "Dense Concrete Core";
-                concreteFill.style.backgroundColor = '#dc2626';
+                densityLbl.innerText = "High (> 10k)";
+                densityFill.style.backgroundColor = '#dc2626';
             }
 
             const floodWarning = document.getElementById('urban-flood-warning');
             if (record.flood_points >= 8) {
                 floodWarning.style.display = 'block';
-                floodWarning.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <strong>Critical Flood Danger:</strong> ${record.flood_points} flood hotspots. Urban concrete is extremely high (${urbanPct.toFixed(1)}%), restricting rainwater drainage.`;
+                floodWarning.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <strong>Critical Flood Danger:</strong> ${record.flood_points} flood hotspots. High population density (${record.pop_density.toLocaleString()}/km²) increases municipal vulnerability.`;
             } else if (record.flood_points >= 3) {
                 floodWarning.style.display = 'block';
-                floodWarning.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <strong>Moderate Flood Danger:</strong> ${record.flood_points} hotspots. Concrete expansion has reduced natural infiltration basins.`;
+                floodWarning.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <strong>Moderate Flood Danger:</strong> ${record.flood_points} hotspots. Local infrastructure requires drainage capacity upgrades.`;
             } else {
                 floodWarning.style.display = 'block';
-                floodWarning.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#10b981"></i> <strong>Low Flood Danger:</strong> Only ${record.flood_points} hotspots. High agricultural and greenery coverage facilitates drainage.`;
+                floodWarning.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#10b981"></i> <strong>Low Flood Danger:</strong> Only ${record.flood_points} hotspots.`;
             }
         }
 
         // Initialize Main Section Tab Charts
         function initMainCharts() {
             // Destroy existing charts to prevent canvas reuse errors
-            if (chartLulcBar) chartLulcBar.destroy();
-            if (chartLulcPie) chartLulcPie.destroy();
             if (chartEnvLst) chartEnvLst.destroy();
             if (chartEnvWaste) chartEnvWaste.destroy();
             if (chartUrbanDensity) chartUrbanDensity.destroy();
             if (chartUrbanScatter) chartUrbanScatter.destroy();
 
             // Sort data by metrics for ranking charts
-            const sortedUrbanization = [...lulcData].map(d => {
-                return { name: d.District_Name, val: (d.Urban_Area_km2 / d.Total_LULC_Area_km2) * 100 };
-            }).sort((a, b) => b.val - a.val);
-
-            const sortedLst = [...lulcData].map(d => {
+            const sortedLst = [...districtData].map(d => {
                 return { name: d.District_Name, val: d.lst };
             }).sort((a, b) => b.val - a.val);
 
-            const sortedWaste = [...lulcData].map(d => {
+            const sortedWaste = [...districtData].map(d => {
                 return { name: d.District_Name, val: d.waste };
             }).sort((a, b) => b.val - a.val);
 
-            const sortedDensity = [...lulcData].map(d => {
+            const sortedDensity = [...districtData].map(d => {
                 return { name: d.District_Name, val: d.pop_density };
             }).sort((a, b) => b.val - a.val);
 
-            // 1. Tab LULC: Urbanization Rates
-            const ctxLulcBar = document.getElementById('chart-lulc-bar').getContext('2d');
-            chartLulcBar = new Chart(ctxLulcBar, {
-                type: 'bar',
-                data: {
-                    labels: sortedUrbanization.map(d => d.name),
-                    datasets: [{
-                        label: 'Urbanization Rate (%)',
-                        data: sortedUrbanization.map(d => d.val),
-                        backgroundColor: 'rgba(59, 130, 246, 0.75)',
-                        borderColor: '#3b82f6',
-                        borderWidth: 1,
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', font: { size: 9 } }, grid: { display: false } },
-                        y: { ticks: { color: '#9ca3af', callback: val => val + '%' }, grid: { color: 'rgba(255,255,255,0.05)' } }
-                    },
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // Tab LULC: Composition Pie
-            const ctxLulcPie = document.getElementById('chart-lulc-pie').getContext('2d');
-            chartLulcPie = new Chart(ctxLulcPie, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Water', 'Urban', 'Agriculture', 'Greenery', 'Bare Land'],
-                    datasets: [{
-                        data: [metroTotals.water, metroTotals.urban, metroTotals.ag, metroTotals.green, metroTotals.bare],
-                        backgroundColor: ['#0000ff', '#ff0000', '#ffff00', '#008000', '#a0522d'],
-                        borderWidth: 1,
-                        borderColor: 'rgba(10, 17, 36, 0.8)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right', labels: { color: '#f3f4f6', font: { size: 11 } } },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const value = context.raw || 0;
-                                    const pct = ((value / metroTotals.total) * 100).toFixed(2);
-                                    return ` ${context.label}: ${value.toLocaleString(undefined, { maximumFractionDigits: 1 })} km² (${pct}%)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 2. Tab ENV: Summer LST
+            // 1. Tab ENV: Summer LST
             const ctxEnvLst = document.getElementById('chart-env-lst').getContext('2d');
             chartEnvLst = new Chart(ctxEnvLst, {
                 type: 'bar',
@@ -1770,7 +1441,7 @@
                 }
             });
 
-            // 3. Tab URBAN: Population Density
+            // 2. Tab URBAN: Population Density
             const ctxUrbanDensity = document.getElementById('chart-urban-density').getContext('2d');
             chartUrbanDensity = new Chart(ctxUrbanDensity, {
                 type: 'bar',
@@ -1796,10 +1467,9 @@
                 }
             });
 
-            // Tab URBAN: Scatter Plot (Flood points vs Concretization Rate)
-            const scatterPoints = lulcData.map(d => {
-                const concretePct = (d.Urban_Area_km2 / d.Total_LULC_Area_km2) * 100;
-                return { x: concretePct, y: d.flood_points, label: d.District_Name };
+            // Tab URBAN: Scatter Plot (Flood points vs Population Density)
+            const scatterPoints = districtData.map(d => {
+                return { x: d.pop_density, y: d.flood_points, label: d.District_Name };
             });
 
             const ctxUrbanScatter = document.getElementById('chart-urban-scatter').getContext('2d');
@@ -1821,7 +1491,7 @@
                     maintainAspectRatio: false,
                     scales: {
                         x: {
-                            title: { display: true, text: 'Concretization Rate (%)', color: '#f3f4f6' },
+                            title: { display: true, text: 'Population Density (people/km²)', color: '#f3f4f6' },
                             ticks: { color: '#9ca3af' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
@@ -1837,7 +1507,7 @@
                             callbacks: {
                                 label: function (context) {
                                     const p = context.raw;
-                                    return ` ${p.label}: Concretized ${p.x.toFixed(1)}%, Floods: ${p.y}`;
+                                    return ` ${p.label}: Density ${p.x.toLocaleString()} /km², Floods: ${p.y}`;
                                 }
                             }
                         }
@@ -1854,37 +1524,7 @@
 
             tbody.innerHTML = "";
 
-            if (currentTheme === 'lulc') {
-                title.innerHTML = `<i class="fa-solid fa-table"></i> District-Level Land Cover Statistics`;
-                thead.innerHTML = `
-                    <tr>
-                        <th>District</th>
-                        <th>Total Area (km²)</th>
-                        <th>Urban Area (km²)</th>
-                        <th>Urbanization (%)</th>
-                        <th>Water (km²)</th>
-                        <th>Agriculture (km²)</th>
-                        <th>Greenery (km²)</th>
-                        <th>Bare Land (km²)</th>
-                    </tr>
-                `;
-                lulcData.forEach(d => {
-                    const tr = document.createElement('tr');
-                    const urbanPct = (d.Urban_Area_km2 / d.Total_LULC_Area_km2) * 100;
-                    tr.onclick = () => selectDistrict(d);
-                    tr.innerHTML = `
-                        <td style="font-weight:600; color:#60a5fa;">${d.District_Name}</td>
-                        <td>${d.Total_LULC_Area_km2.toFixed(2)}</td>
-                        <td>${d.Urban_Area_km2.toFixed(2)}</td>
-                        <td style="font-weight:700; color:#ef4444;">${urbanPct.toFixed(1)}%</td>
-                        <td>${d.Water_Area_km2.toFixed(2)}</td>
-                        <td>${d.Agriculture_Area_km2.toFixed(2)}</td>
-                        <td>${d.Greenery_Area_km2.toFixed(2)}</td>
-                        <td>${d.Bare_Land_Area_km2.toFixed(2)}</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            } else if (currentTheme === 'env') {
+            if (currentTheme === 'env') {
                 title.innerHTML = `<i class="fa-solid fa-table"></i> District Environmental & Quality Indicators`;
                 thead.innerHTML = `
                     <tr>
@@ -1893,13 +1533,11 @@
                         <th>AQI Status</th>
                         <th>Avg Summer LST (°C)</th>
                         <th>Solid Waste (Tons/Day)</th>
-                        <th>Green Space (km²)</th>
-                        <th>Green Space Ratio</th>
+                        <th>District Area (km²)</th>
                     </tr>
                 `;
-                lulcData.forEach(d => {
+                districtData.forEach(d => {
                     const tr = document.createElement('tr');
-                    const greenRatio = (d.Greenery_Area_km2 / d.Total_LULC_Area_km2) * 100;
                     tr.onclick = () => selectDistrict(d);
 
                     let statusLabel = "";
@@ -1914,27 +1552,23 @@
                         <td>${statusLabel}</td>
                         <td style="color:#f97316; font-weight:600;">${d.lst}°C</td>
                         <td>${d.waste}</td>
-                        <td>${d.Greenery_Area_km2.toFixed(2)}</td>
-                        <td>${greenRatio.toFixed(1)}%</td>
+                        <td>${d.Area_km2.toFixed(2)}</td>
                     `;
                     tbody.appendChild(tr);
                 });
             } else if (currentTheme === 'urban') {
-                title.innerHTML = `<i class="fa-solid fa-table"></i> Urban Concrete & Water-Permeability Stress Metrics`;
+                title.innerHTML = `<i class="fa-solid fa-table"></i> Urban Pressure & Flood Risk Metrics`;
                 thead.innerHTML = `
                     <tr>
                         <th>District</th>
                         <th>Population Density (/km²)</th>
-                        <th>Concretization Rate (%)</th>
                         <th>Flood Points</th>
-                        <th>Total Area (km²)</th>
-                        <th>Urban Built Area (km²)</th>
-                        <th>Water Body Area (km²)</th>
+                        <th>Flood Risk Level</th>
+                        <th>District Area (km²)</th>
                     </tr>
                 `;
-                lulcData.forEach(d => {
+                districtData.forEach(d => {
                     const tr = document.createElement('tr');
-                    const concretePct = (d.Urban_Area_km2 / d.Total_LULC_Area_km2) * 100;
                     tr.onclick = () => selectDistrict(d);
 
                     let floodLevel = "";
@@ -1945,11 +1579,9 @@
                     tr.innerHTML = `
                         <td style="font-weight:600; color:#60a5fa;">${d.District_Name}</td>
                         <td style="font-weight:700;">${d.pop_density.toLocaleString()}</td>
-                        <td style="color:#ef4444; font-weight:600;">${concretePct.toFixed(1)}%</td>
+                        <td>${d.flood_points}</td>
                         <td>${floodLevel}</td>
-                        <td>${d.Total_LULC_Area_km2.toFixed(2)}</td>
-                        <td>${d.Urban_Area_km2.toFixed(2)}</td>
-                        <td>${d.Water_Area_km2.toFixed(2)}</td>
+                        <td>${d.Area_km2.toFixed(2)}</td>
                     `;
                     tbody.appendChild(tr);
                 });
@@ -1999,27 +1631,7 @@
             icon3.className = "kpi-icon-container";
             icon4.className = "kpi-icon-container";
 
-            if (currentTheme === 'lulc') {
-                cardLbl1.innerText = "Overall Accuracy";
-                cardVal1.innerText = "83.48%";
-                icon1.classList.add("kpi-icon-accuracy");
-                icon1.innerHTML = `<i class="fa-solid fa-bullseye" style="color:var(--success)"></i>`;
-
-                cardLbl2.innerText = "Kappa Coefficient";
-                cardVal2.innerText = "0.7930";
-                icon2.classList.add("kpi-icon-kappa");
-                icon2.innerHTML = `<i class="fa-solid fa-chart-line" style="color:var(--primary)"></i>`;
-
-                cardLbl3.innerText = "Spatial Resolution";
-                cardVal3.innerText = "10 Meters";
-                icon3.classList.add("kpi-icon-res");
-                icon3.innerHTML = `<i class="fa-solid fa-border-all" style="color:#f59e0b"></i>`;
-
-                cardLbl4.innerText = "Target Classes";
-                cardVal4.innerText = "5 LULC Classes";
-                icon4.classList.add("kpi-icon-count");
-                icon4.innerHTML = `<i class="fa-solid fa-layer-group" style="color:#8b5cf6"></i>`;
-            } else if (currentTheme === 'env') {
+            if (currentTheme === 'env') {
                 cardLbl1.innerText = "Metro Avg AQI";
                 cardVal1.innerText = metroTotals.aqi;
                 icon1.classList.add("kpi-icon-count"); // Purple
@@ -2031,34 +1643,32 @@
                 icon2.innerHTML = `<i class="fa-solid fa-temperature-high" style="color:#f59e0b"></i>`;
 
                 cardLbl3.innerText = "Total Waste Daily";
-                cardVal3.innerText = "8,000 Tons";
+                cardVal3.innerText = metroTotals.waste.toLocaleString() + " Tons";
                 icon3.classList.add("kpi-icon-accuracy"); // Green
                 icon3.innerHTML = `<i class="fa-solid fa-trash-can" style="color:var(--success)"></i>`;
 
-                cardLbl4.innerText = "Avg Greenery Space";
-                const greeneryPct = ((metroTotals.green / metroTotals.total) * 100).toFixed(1);
-                cardVal4.innerText = greeneryPct + "%";
+                cardLbl4.innerText = "Monitored Zones";
+                cardVal4.innerText = districtData.length + " Districts";
                 icon4.classList.add("kpi-icon-kappa"); // Blue
-                icon4.innerHTML = `<i class="fa-solid fa-tree" style="color:var(--primary)"></i>`;
+                icon4.innerHTML = `<i class="fa-solid fa-map-location-dot" style="color:var(--primary)"></i>`;
             } else if (currentTheme === 'urban') {
                 cardLbl1.innerText = "Avg Pop Density";
                 cardVal1.innerText = metroTotals.pop_density.toLocaleString() + " /km²";
                 icon1.classList.add("kpi-icon-kappa"); // Blue
                 icon1.innerHTML = `<i class="fa-solid fa-users" style="color:var(--primary)"></i>`;
 
-                cardLbl2.innerText = "Avg Concretization";
-                const concretePct = ((metroTotals.urban / metroTotals.total) * 100).toFixed(1);
-                cardVal2.innerText = concretePct + "%";
+                cardLbl2.innerText = "Metro Total Area";
+                cardVal2.innerText = metroTotals.total.toLocaleString(undefined, {maximumFractionDigits: 1}) + " km²";
                 icon2.classList.add("kpi-icon-accuracy"); // Green
-                icon2.innerHTML = `<i class="fa-solid fa-cubes" style="color:var(--success)"></i>`;
+                icon2.innerHTML = `<i class="fa-solid fa-chart-area" style="color:var(--success)"></i>`;
 
                 cardLbl3.innerText = "Total Flood Points";
                 cardVal3.innerText = metroTotals.flood_points + " Points";
                 icon3.classList.add("kpi-icon-res"); // Orange
                 icon3.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy" style="color:#f59e0b"></i>`;
 
-                cardLbl4.innerText = "Total Population";
-                cardVal4.innerText = "~7.5 Million";
+                cardLbl4.innerText = "Est. Total Pop";
+                cardVal4.innerText = (metroTotals.population / 1000000).toFixed(2) + " Million";
                 icon4.classList.add("kpi-icon-count"); // Purple
                 icon4.innerHTML = `<i class="fa-solid fa-people-group" style="color:#8b5cf6"></i>`;
             }
@@ -2085,12 +1695,10 @@
                 geojsonLayer.setStyle(styleFeature);
             }
 
-            if (theme === 'lulc') {
-                document.getElementById('map-title-text').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> Hanoi LULC Classification Map (2024)`;
-            } else if (theme === 'env') {
+            if (theme === 'env') {
                 document.getElementById('map-title-text').innerHTML = `<i class="fa-solid fa-wind"></i> Air Quality Index (AQI) Choropleth Map`;
             } else if (theme === 'urban') {
-                document.getElementById('map-title-text').innerHTML = `<i class="fa-solid fa-city"></i> Built-up Concretization Rate Choropleth Map`;
+                document.getElementById('map-title-text').innerHTML = `<i class="fa-solid fa-users"></i> Population Density (/km²) Choropleth Map`;
             }
 
             // Update Elements
@@ -2145,7 +1753,7 @@
                 // Update district-specific metrics
                 if (realtime.districts) {
                     for (const [name, metrics] of Object.entries(realtime.districts)) {
-                        const record = lulcData.find(d => d.District_Name === name);
+                        const record = districtData.find(d => d.District_Name === name);
                         if (record) {
                             if (metrics.aqi !== undefined) record.aqi = metrics.aqi;
                             if (metrics.lst !== undefined) record.lst = metrics.lst;

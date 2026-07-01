@@ -7,38 +7,38 @@ import datetime
 HANOI_LAT = 21.0285
 HANOI_LON = 105.8542
 
-# Baseline district areas (to compute concretization rates dynamically)
+# Baseline district areas and population densities to compute dynamic metrics
 DISTRICT_BASELINES = {
-    "Ba Dinh": {"urban": 6.66, "total": 11.46, "base_aqi_factor": 1.12},
-    "Hoan Kiem": {"urban": 3.56, "total": 5.93, "base_aqi_factor": 1.15},
-    "Tay Ho": {"urban": 8.81, "total": 27.72, "base_aqi_factor": 0.95},
-    "Long Bien": {"urban": 22.96, "total": 56.90, "base_aqi_factor": 1.02},
-    "Cau Giay": {"urban": 9.11, "total": 15.91, "base_aqi_factor": 1.20},
-    "Dong Da": {"urban": 7.12, "total": 9.15, "base_aqi_factor": 1.18},
-    "Hai Ba Trung": {"urban": 8.40, "total": 12.87, "base_aqi_factor": 1.14},
-    "Hoang Mai": {"urban": 18.36, "total": 37.98, "base_aqi_factor": 1.13},
-    "Thanh Xuan": {"urban": 5.58, "total": 8.35, "base_aqi_factor": 1.16},
-    "Soc Son": {"urban": 52.54, "total": 304.05, "base_aqi_factor": 0.72},
-    "Dong Anh": {"urban": 49.47, "total": 190.46, "base_aqi_factor": 0.98},
-    "Gia Lam": {"urban": 30.16, "total": 118.39, "base_aqi_factor": 0.95},
-    "Thanh Tri": {"urban": 26.08, "total": 70.44, "base_aqi_factor": 1.04},
-    "Bac Tu Liem": {"urban": 15.22, "total": 43.35, "base_aqi_factor": 1.04},
-    "Nam Tu Liem": {"urban": 13.50, "total": 31.37, "base_aqi_factor": 1.08},
-    "Me Linh": {"urban": 27.26, "total": 143.60, "base_aqi_factor": 0.88},
-    "Ha Dong": {"urban": 17.22, "total": 34.17, "base_aqi_factor": 1.08},
-    "Son Tay": {"urban": 20.05, "total": 122.74, "base_aqi_factor": 0.80},
-    "Ba Vi": {"urban": 43.12, "total": 419.17, "base_aqi_factor": 0.60},
-    "Phuc Tho": {"urban": 21.85, "total": 118.51, "base_aqi_factor": 0.74},
-    "Dan Phuong": {"urban": 18.45, "total": 72.79, "base_aqi_factor": 0.78},
-    "Hoai Duc": {"urban": 28.33, "total": 83.94, "base_aqi_factor": 0.96},
-    "Quoc Oai": {"urban": 25.84, "total": 151.25, "base_aqi_factor": 0.76},
-    "Thach That": {"urban": 29.87, "total": 172.83, "base_aqi_factor": 0.82},
-    "Chuong My": {"urban": 42.78, "total": 229.30, "base_aqi_factor": 0.78},
-    "Thanh Oai": {"urban": 27.20, "total": 125.96, "base_aqi_factor": 0.84},
-    "Thuong Tin": {"urban": 35.10, "total": 139.87, "base_aqi_factor": 0.88},
-    "Phu Xuyen": {"urban": 28.12, "total": 180.15, "base_aqi_factor": 0.82},
-    "Ung Hoa": {"urban": 25.00, "total": 179.12, "base_aqi_factor": 0.74},
-    "My Duc": {"urban": 25.47, "total": 235.32, "base_aqi_factor": 0.66}
+    "Ba Dinh": {"pop_density": 24200, "base_aqi_factor": 1.12},
+    "Hoan Kiem": {"pop_density": 25800, "base_aqi_factor": 1.15},
+    "Tay Ho": {"pop_density": 6300, "base_aqi_factor": 0.95},
+    "Long Bien": {"pop_density": 5700, "base_aqi_factor": 1.02},
+    "Cau Giay": {"pop_density": 23500, "base_aqi_factor": 1.20},
+    "Dong Da": {"pop_density": 37800, "base_aqi_factor": 1.18},
+    "Hai Ba Trung": {"pop_density": 29500, "base_aqi_factor": 1.14},
+    "Hoang Mai": {"pop_density": 11200, "base_aqi_factor": 1.13},
+    "Thanh Xuan": {"pop_density": 31200, "base_aqi_factor": 1.16},
+    "Soc Son": {"pop_density": 1100, "base_aqi_factor": 0.72},
+    "Dong Anh": {"pop_density": 2100, "base_aqi_factor": 0.98},
+    "Gia Lam": {"pop_density": 2800, "base_aqi_factor": 0.95},
+    "Thanh Tri": {"pop_density": 4500, "base_aqi_factor": 1.04},
+    "Bac Tu Liem": {"pop_density": 7800, "base_aqi_factor": 1.04},
+    "Nam Tu Liem": {"pop_density": 8300, "base_aqi_factor": 1.08},
+    "Me Linh": {"pop_density": 1700, "base_aqi_factor": 0.88},
+    "Ha Dong": {"pop_density": 8200, "base_aqi_factor": 1.08},
+    "Son Tay": {"pop_density": 1500, "base_aqi_factor": 0.80},
+    "Ba Vi": {"pop_density": 680, "base_aqi_factor": 0.60},
+    "Phuc Tho": {"pop_density": 1600, "base_aqi_factor": 0.74},
+    "Dan Phuong": {"pop_density": 2400, "base_aqi_factor": 0.78},
+    "Hoai Duc": {"pop_density": 3200, "base_aqi_factor": 0.96},
+    "Quoc Oai": {"pop_density": 1500, "base_aqi_factor": 0.76},
+    "Thach That": {"pop_density": 1800, "base_aqi_factor": 0.82},
+    "Chuong My": {"pop_density": 1400, "base_aqi_factor": 0.78},
+    "Thanh Oai": {"pop_density": 1600, "base_aqi_factor": 0.84},
+    "Thuong Tin": {"pop_density": 2000, "base_aqi_factor": 0.88},
+    "Phu Xuyen": {"pop_density": 1300, "base_aqi_factor": 0.82},
+    "Ung Hoa": {"pop_density": 1200, "base_aqi_factor": 0.74},
+    "My Duc": {"pop_density": 950, "base_aqi_factor": 0.66}
 }
 
 def fetch_aqi():
@@ -94,19 +94,20 @@ def main():
     # Generate district-specific metrics using models
     districts_realtime = {}
     for name, info in DISTRICT_BASELINES.items():
-        concrete_rate = (info["urban"] / info["total"]) * 100
+        density = info["pop_density"]
         
         # 1. District AQI Model
         district_aqi = int(base_aqi * info["base_aqi_factor"])
         
-        # 2. District LST Model (UHI effect: LST increases with concrete cover)
-        # LST = base soil temp + UHI scale factor based on concrete rate
-        lst_offset = (concrete_rate / 100.0) * 8.0  # concrete areas are up to 8°C hotter than rural areas
+        # 2. District LST Model (UHI effect: LST increases with population density)
+        # Heat island offset can go up to 8°C in high-density districts (e.g. density > 30,000 /km2)
+        density_factor = min(density / 30000.0, 1.0)
+        lst_offset = density_factor * 8.0
         district_lst = round(weather["soil_temp"] + lst_offset - 2.0, 1)
         
         # 3. Dynamic Rain-induced Flood Points warning
-        # Base flood points scale with concrete rate. If active rain is falling, we increase it!
-        base_floods = int(concrete_rate / 6.0) # e.g. 90% concrete -> 15 points
+        # Base flood points scale with population density.
+        base_floods = int((density / 35000.0) * 12) + 1  # max 13 base flood points
         if weather["rain"] > 10.0:
             active_floods = base_floods * 2  # heavy rain doubles flood points
         elif weather["rain"] > 1.0:
