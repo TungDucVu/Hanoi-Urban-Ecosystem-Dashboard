@@ -1,160 +1,160 @@
 {
-    "last_updated": "2026-07-06T14:21:49.958623+00:00",
+    "last_updated": "2026-07-06T17:36:42.501283+00:00",
     "metro": {
-        "aqi": 113,
-        "lst": 27.7,
-        "air_temp": 28.7,
+        "aqi": 105,
+        "lst": 26.8,
+        "air_temp": 27.7,
         "rain_mm": 0.0
     },
     "districts": {
         "Ba Dinh": {
-            "aqi": 126,
-            "lst": 32.2,
+            "aqi": 117,
+            "lst": 31.3,
             "flood_points": 9
         },
         "Hoan Kiem": {
-            "aqi": 129,
-            "lst": 32.6,
+            "aqi": 120,
+            "lst": 31.7,
             "flood_points": 9
         },
         "Tay Ho": {
-            "aqi": 107,
-            "lst": 27.4,
+            "aqi": 99,
+            "lst": 26.5,
             "flood_points": 3
         },
         "Long Bien": {
-            "aqi": 115,
-            "lst": 27.2,
+            "aqi": 107,
+            "lst": 26.3,
             "flood_points": 2
         },
         "Cau Giay": {
-            "aqi": 135,
-            "lst": 32.0,
+            "aqi": 126,
+            "lst": 31.1,
             "flood_points": 9
         },
         "Dong Da": {
-            "aqi": 133,
-            "lst": 33.7,
+            "aqi": 123,
+            "lst": 32.8,
             "flood_points": 13
         },
         "Hai Ba Trung": {
-            "aqi": 128,
-            "lst": 33.6,
+            "aqi": 119,
+            "lst": 32.7,
             "flood_points": 11
         },
         "Hoang Mai": {
-            "aqi": 127,
-            "lst": 28.7,
+            "aqi": 118,
+            "lst": 27.8,
             "flood_points": 4
         },
         "Thanh Xuan": {
-            "aqi": 131,
-            "lst": 33.7,
+            "aqi": 121,
+            "lst": 32.8,
             "flood_points": 11
         },
         "Soc Son": {
-            "aqi": 81,
-            "lst": 26.0,
+            "aqi": 75,
+            "lst": 25.1,
             "flood_points": 1
         },
         "Dong Anh": {
-            "aqi": 110,
-            "lst": 26.3,
+            "aqi": 102,
+            "lst": 25.4,
             "flood_points": 1
         },
         "Gia Lam": {
-            "aqi": 107,
-            "lst": 26.4,
+            "aqi": 99,
+            "lst": 25.5,
             "flood_points": 1
         },
         "Thanh Tri": {
-            "aqi": 117,
-            "lst": 26.9,
+            "aqi": 109,
+            "lst": 26.0,
             "flood_points": 2
         },
         "Bac Tu Liem": {
-            "aqi": 117,
-            "lst": 27.8,
+            "aqi": 109,
+            "lst": 26.9,
             "flood_points": 3
         },
         "Nam Tu Liem": {
-            "aqi": 122,
-            "lst": 27.9,
+            "aqi": 113,
+            "lst": 27.0,
             "flood_points": 3
         },
         "Me Linh": {
-            "aqi": 99,
-            "lst": 26.2,
+            "aqi": 92,
+            "lst": 25.3,
             "flood_points": 1
         },
         "Ha Dong": {
-            "aqi": 122,
-            "lst": 27.9,
+            "aqi": 113,
+            "lst": 27.0,
             "flood_points": 3
         },
         "Son Tay": {
-            "aqi": 90,
-            "lst": 26.1,
+            "aqi": 84,
+            "lst": 25.2,
             "flood_points": 1
         },
         "Ba Vi": {
-            "aqi": 67,
-            "lst": 25.9,
+            "aqi": 63,
+            "lst": 25.0,
             "flood_points": 1
         },
         "Phuc Tho": {
-            "aqi": 83,
-            "lst": 26.1,
+            "aqi": 77,
+            "lst": 25.2,
             "flood_points": 1
         },
         "Dan Phuong": {
-            "aqi": 88,
-            "lst": 26.3,
+            "aqi": 81,
+            "lst": 25.4,
             "flood_points": 1
         },
         "Hoai Duc": {
-            "aqi": 108,
-            "lst": 26.6,
+            "aqi": 100,
+            "lst": 25.7,
             "flood_points": 2
         },
         "Quoc Oai": {
-            "aqi": 85,
-            "lst": 26.1,
+            "aqi": 79,
+            "lst": 25.2,
             "flood_points": 1
         },
         "Thach That": {
-            "aqi": 92,
-            "lst": 26.2,
+            "aqi": 86,
+            "lst": 25.3,
             "flood_points": 1
         },
         "Chuong My": {
-            "aqi": 88,
-            "lst": 26.1,
+            "aqi": 81,
+            "lst": 25.2,
             "flood_points": 1
         },
         "Thanh Oai": {
-            "aqi": 94,
-            "lst": 26.1,
+            "aqi": 88,
+            "lst": 25.2,
             "flood_points": 1
         },
         "Thuong Tin": {
-            "aqi": 99,
-            "lst": 26.2,
+            "aqi": 92,
+            "lst": 25.3,
             "flood_points": 1
         },
         "Phu Xuyen": {
-            "aqi": 92,
-            "lst": 26.0,
+            "aqi": 86,
+            "lst": 25.1,
             "flood_points": 1
         },
         "Ung Hoa": {
-            "aqi": 83,
-            "lst": 26.0,
+            "aqi": 77,
+            "lst": 25.1,
             "flood_points": 1
         },
         "My Duc": {
-            "aqi": 74,
-            "lst": 26.0,
+            "aqi": 69,
+            "lst": 25.1,
             "flood_points": 1
         }
     }
