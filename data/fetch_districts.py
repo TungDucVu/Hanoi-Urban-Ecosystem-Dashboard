@@ -25,7 +25,7 @@ def fetch_osm_boundaries():
     """
     
     headers = {
-        'User-Agent': 'HanoiUrbanDashboard/1.0 (contact: github.com/TungDucVu/Dashboard_Hanoi)',
+        'User-Agent': 'HanoiUrbanDashboard/1.0 (contact: github.com/TungDucVu/Hanoi-Urban-Ecosystem-Dashboard)',
         'Accept-Encoding': 'gzip, deflate'
     }
     

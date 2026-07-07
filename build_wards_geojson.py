@@ -6,9 +6,10 @@ import numpy as np
 
 # Paths
 shp_path = r"D:\Future Career\VNSC INTERN\Day 1\shp_Hanoi-20260624T064257Z-3-001\shp_Hanoi\hc_TpHN_xa.shp"
-csv_path = r"D:\Future Career\Dashboard_Hanoi\data\hanoi_environmental_urban_metrics.csv"
-output_geojson = r"D:\Future Career\Dashboard_Hanoi\data\hanoi_wards.geojson"
-output_js = r"D:\Future Career\Dashboard_Hanoi\data\hanoi_wards.js"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(base_dir, "data", "hanoi_environmental_urban_metrics.csv")
+output_geojson = os.path.join(base_dir, "data", "hanoi_wards.geojson")
+output_js = os.path.join(base_dir, "data", "hanoi_wards.js")
 
 # Prefix mapping
 prefix_to_district = {

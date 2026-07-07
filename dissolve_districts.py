@@ -5,9 +5,10 @@ import os
 
 # Paths
 shp_path = r"D:\Future Career\VNSC INTERN\Day 1\shp_Hanoi-20260624T064257Z-3-001\shp_Hanoi\hc_TpHN_xa.shp"
-output_geojson_2026 = r"D:\Future Career\Dashboard_Hanoi\data\hanoi_2026.geojson"
-output_geojson_districts = r"D:\Future Career\Dashboard_Hanoi\data\hanoi_districts.geojson"
-output_js_districts = r"D:\Future Career\Dashboard_Hanoi\data\hanoi_districts.js"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+output_geojson_2026 = os.path.join(base_dir, "data", "hanoi_2026.geojson")
+output_geojson_districts = os.path.join(base_dir, "data", "hanoi_districts.geojson")
+output_js_districts = os.path.join(base_dir, "data", "hanoi_districts.js")
 
 # Prefix to district mapping
 prefix_to_district = {
