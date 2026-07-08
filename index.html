@@ -2309,8 +2309,20 @@
         // Asynchronous Real-Time Data Loader
         async function loadRealtimeData() {
             try {
-                const response = await fetch('data/realtime_metrics.json');
-                if (!response.ok) throw new Error("Metrics file not found or inaccessible");
+                // Construct a robust path to data/realtime_metrics.json that accounts for
+                // GitHub Pages directory structure (with/without trailing slash, or with index.html)
+                let basePath = window.location.pathname;
+                if (basePath.endsWith('.html') || basePath.endsWith('.htm')) {
+                    basePath = basePath.substring(0, basePath.lastIndexOf('/'));
+                }
+                if (!basePath.endsWith('/')) {
+                    basePath += '/';
+                }
+                const origin = window.location.origin === 'null' ? '' : window.location.origin;
+                const fetchUrl = origin + basePath + 'data/realtime_metrics.json?t=' + new Date().getTime();
+
+                const response = await fetch(fetchUrl);
+                if (!response.ok) throw new Error("Metrics file not found or inaccessible at " + fetchUrl);
                 const realtime = await response.json();
                 
                 // Update district-specific metrics
@@ -2433,6 +2445,9 @@
         // Run Initialization
         renderTable();
         loadRealtimeData();
+
+        // Automatically refresh real-time metrics every 15 minutes
+        setInterval(loadRealtimeData, 15 * 60 * 1000);
 
     </script>
 </body>
