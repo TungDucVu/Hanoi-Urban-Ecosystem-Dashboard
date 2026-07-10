@@ -1,160 +1,160 @@
 {
-    "last_updated": "2026-07-10T02:11:06.490035+00:00",
+    "last_updated": "2026-07-10T06:37:05.828849+00:00",
     "metro": {
-        "aqi": 9,
-        "lst": 31.0,
-        "air_temp": 28.0,
+        "aqi": 49,
+        "lst": 34.0,
+        "air_temp": 32.0,
         "rain_mm": 0.0
     },
     "districts": {
         "Ba Dinh": {
-            "aqi": 10,
-            "lst": 35.5,
+            "aqi": 54,
+            "lst": 38.5,
             "flood_points": 9
         },
         "Hoan Kiem": {
-            "aqi": 10,
-            "lst": 35.9,
+            "aqi": 56,
+            "lst": 38.9,
             "flood_points": 9
         },
         "Tay Ho": {
-            "aqi": 10,
-            "lst": 30.7,
+            "aqi": 46,
+            "lst": 33.7,
             "flood_points": 3
         },
         "Long Bien": {
-            "aqi": 10,
-            "lst": 30.5,
+            "aqi": 49,
+            "lst": 33.5,
             "flood_points": 2
         },
         "Cau Giay": {
-            "aqi": 10,
-            "lst": 35.3,
+            "aqi": 58,
+            "lst": 38.3,
             "flood_points": 9
         },
         "Dong Da": {
-            "aqi": 10,
-            "lst": 37.0,
+            "aqi": 57,
+            "lst": 40.0,
             "flood_points": 13
         },
         "Hai Ba Trung": {
-            "aqi": 10,
-            "lst": 36.9,
+            "aqi": 55,
+            "lst": 39.9,
             "flood_points": 11
         },
         "Hoang Mai": {
-            "aqi": 10,
-            "lst": 32.0,
+            "aqi": 55,
+            "lst": 35.0,
             "flood_points": 4
         },
         "Thanh Xuan": {
-            "aqi": 10,
-            "lst": 37.0,
+            "aqi": 56,
+            "lst": 40.0,
             "flood_points": 11
         },
         "Soc Son": {
-            "aqi": 10,
-            "lst": 29.3,
+            "aqi": 35,
+            "lst": 32.3,
             "flood_points": 1
         },
         "Dong Anh": {
-            "aqi": 10,
-            "lst": 29.6,
+            "aqi": 48,
+            "lst": 32.6,
             "flood_points": 1
         },
         "Gia Lam": {
-            "aqi": 10,
-            "lst": 29.7,
+            "aqi": 46,
+            "lst": 32.7,
             "flood_points": 1
         },
         "Thanh Tri": {
-            "aqi": 10,
-            "lst": 30.2,
+            "aqi": 50,
+            "lst": 33.2,
             "flood_points": 2
         },
         "Bac Tu Liem": {
-            "aqi": 10,
-            "lst": 31.1,
+            "aqi": 50,
+            "lst": 34.1,
             "flood_points": 3
         },
         "Nam Tu Liem": {
-            "aqi": 10,
-            "lst": 31.2,
+            "aqi": 52,
+            "lst": 34.2,
             "flood_points": 3
         },
         "Me Linh": {
-            "aqi": 10,
-            "lst": 29.5,
+            "aqi": 43,
+            "lst": 32.5,
             "flood_points": 1
         },
         "Ha Dong": {
-            "aqi": 10,
-            "lst": 31.2,
+            "aqi": 52,
+            "lst": 34.2,
             "flood_points": 3
         },
         "Son Tay": {
-            "aqi": 10,
-            "lst": 29.4,
+            "aqi": 39,
+            "lst": 32.4,
             "flood_points": 1
         },
         "Ba Vi": {
-            "aqi": 10,
-            "lst": 29.2,
+            "aqi": 29,
+            "lst": 32.2,
             "flood_points": 1
         },
         "Phuc Tho": {
-            "aqi": 10,
-            "lst": 29.4,
+            "aqi": 36,
+            "lst": 32.4,
             "flood_points": 1
         },
         "Dan Phuong": {
-            "aqi": 10,
-            "lst": 29.6,
+            "aqi": 38,
+            "lst": 32.6,
             "flood_points": 1
         },
         "Hoai Duc": {
-            "aqi": 10,
-            "lst": 29.9,
+            "aqi": 47,
+            "lst": 32.9,
             "flood_points": 2
         },
         "Quoc Oai": {
-            "aqi": 10,
-            "lst": 29.4,
+            "aqi": 37,
+            "lst": 32.4,
             "flood_points": 1
         },
         "Thach That": {
-            "aqi": 10,
-            "lst": 29.5,
+            "aqi": 40,
+            "lst": 32.5,
             "flood_points": 1
         },
         "Chuong My": {
-            "aqi": 10,
-            "lst": 29.4,
+            "aqi": 38,
+            "lst": 32.4,
             "flood_points": 1
         },
         "Thanh Oai": {
-            "aqi": 10,
-            "lst": 29.4,
+            "aqi": 41,
+            "lst": 32.4,
             "flood_points": 1
         },
         "Thuong Tin": {
-            "aqi": 10,
-            "lst": 29.5,
+            "aqi": 43,
+            "lst": 32.5,
             "flood_points": 1
         },
         "Phu Xuyen": {
-            "aqi": 10,
-            "lst": 29.3,
+            "aqi": 40,
+            "lst": 32.3,
             "flood_points": 1
         },
         "Ung Hoa": {
-            "aqi": 10,
-            "lst": 29.3,
+            "aqi": 36,
+            "lst": 32.3,
             "flood_points": 1
         },
         "My Duc": {
-            "aqi": 10,
-            "lst": 29.3,
+            "aqi": 32,
+            "lst": 32.3,
             "flood_points": 1
         }
     },
@@ -163,8 +163,8 @@
         "Endpoint https://api.waqi.info/feed/vietnam/hanoi/french-embassy/ returned status: error",
         "Endpoint https://api.waqi.info/feed/vietnam/hanoi/chi-cuc-bvmt-hanoi/ returned status: error",
         "Fetched AQI from Hanoi, Vietnam (Hà Nội): 9",
-        "Fetched AQI from Hanoi, Vietnam (Hà Nội): 9",
-        "All stations returned low values. Selected AQI 9 from Hanoi, Vietnam (Hà Nội)",
-        "Successfully fetched weather: Temp=28.0°C, SoilTemp=31.0°C, Rain=0.0mm"
+        "Fetched AQI from Hà Nội/Chi cục BVMT, Vietnam: 49",
+        "Selected realistic AQI 49 from Hà Nội/Chi cục BVMT, Vietnam",
+        "Error fetching weather: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10). Using fallback mock data."
     ]
 }
