@@ -1,9 +1,9 @@
 {
-    "last_updated": "2026-07-12T11:52:26.178518+00:00",
+    "last_updated": "2026-07-12T13:01:57.449341+00:00",
     "metro": {
         "aqi": 56,
         "lst": 27.3,
-        "air_temp": 27.2,
+        "air_temp": 27.5,
         "rain_mm": 0.0
     },
     "districts": {
@@ -165,6 +165,6 @@
         "Station Hanoi, Vietnam (Hà Nội) returned non-numeric AQI: -",
         "Fetched AQI from United Nations International School of Hanoi, Vietnam (Trường Quốc tế Liên Hợp Quốc Hà Nội): 56",
         "Selected realistic AQI 56 from United Nations International School of Hanoi, Vietnam (Trường Quốc tế Liên Hợp Quốc Hà Nội)",
-        "Successfully fetched weather: Temp=27.2°C, SoilTemp=27.3°C, Rain=0.0mm"
+        "Successfully fetched weather: Temp=27.5°C, SoilTemp=27.3°C, Rain=0.0mm"
     ]
 }
