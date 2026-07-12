@@ -1,160 +1,160 @@
 {
-    "last_updated": "2026-07-12T22:39:34.867420+00:00",
+    "last_updated": "2026-07-12T23:44:42.733061+00:00",
     "metro": {
-        "aqi": 135,
-        "lst": 26.8,
-        "air_temp": 26.7,
+        "aqi": 136,
+        "lst": 27.9,
+        "air_temp": 27.3,
         "rain_mm": 0.0
     },
     "districts": {
         "Ba Dinh": {
-            "aqi": 151,
-            "lst": 31.3,
+            "aqi": 152,
+            "lst": 32.4,
             "flood_points": 9
         },
         "Hoan Kiem": {
-            "aqi": 155,
-            "lst": 31.7,
+            "aqi": 156,
+            "lst": 32.8,
             "flood_points": 9
         },
         "Tay Ho": {
-            "aqi": 128,
-            "lst": 26.5,
+            "aqi": 129,
+            "lst": 27.6,
             "flood_points": 3
         },
         "Long Bien": {
-            "aqi": 137,
-            "lst": 26.3,
+            "aqi": 138,
+            "lst": 27.4,
             "flood_points": 2
         },
         "Cau Giay": {
-            "aqi": 162,
-            "lst": 31.1,
+            "aqi": 163,
+            "lst": 32.2,
             "flood_points": 9
         },
         "Dong Da": {
-            "aqi": 159,
-            "lst": 32.8,
+            "aqi": 160,
+            "lst": 33.9,
             "flood_points": 13
         },
         "Hai Ba Trung": {
-            "aqi": 153,
-            "lst": 32.7,
+            "aqi": 155,
+            "lst": 33.8,
             "flood_points": 11
         },
         "Hoang Mai": {
-            "aqi": 152,
-            "lst": 27.8,
+            "aqi": 153,
+            "lst": 28.9,
             "flood_points": 4
         },
         "Thanh Xuan": {
-            "aqi": 156,
-            "lst": 32.8,
+            "aqi": 157,
+            "lst": 33.9,
             "flood_points": 11
         },
         "Soc Son": {
             "aqi": 97,
-            "lst": 25.1,
+            "lst": 26.2,
             "flood_points": 1
         },
         "Dong Anh": {
-            "aqi": 132,
-            "lst": 25.4,
+            "aqi": 133,
+            "lst": 26.5,
             "flood_points": 1
         },
         "Gia Lam": {
-            "aqi": 128,
-            "lst": 25.5,
+            "aqi": 129,
+            "lst": 26.6,
             "flood_points": 1
         },
         "Thanh Tri": {
-            "aqi": 140,
-            "lst": 26.0,
+            "aqi": 141,
+            "lst": 27.1,
             "flood_points": 2
         },
         "Bac Tu Liem": {
-            "aqi": 140,
-            "lst": 26.9,
+            "aqi": 141,
+            "lst": 28.0,
             "flood_points": 3
         },
         "Nam Tu Liem": {
-            "aqi": 145,
-            "lst": 27.0,
+            "aqi": 146,
+            "lst": 28.1,
             "flood_points": 3
         },
         "Me Linh": {
-            "aqi": 118,
-            "lst": 25.3,
+            "aqi": 119,
+            "lst": 26.4,
             "flood_points": 1
         },
         "Ha Dong": {
-            "aqi": 145,
-            "lst": 27.0,
+            "aqi": 146,
+            "lst": 28.1,
             "flood_points": 3
         },
         "Son Tay": {
             "aqi": 108,
-            "lst": 25.2,
+            "lst": 26.3,
             "flood_points": 1
         },
         "Ba Vi": {
             "aqi": 81,
-            "lst": 25.0,
+            "lst": 26.1,
             "flood_points": 1
         },
         "Phuc Tho": {
-            "aqi": 99,
-            "lst": 25.2,
+            "aqi": 100,
+            "lst": 26.3,
             "flood_points": 1
         },
         "Dan Phuong": {
-            "aqi": 105,
-            "lst": 25.4,
+            "aqi": 106,
+            "lst": 26.5,
             "flood_points": 1
         },
         "Hoai Duc": {
-            "aqi": 129,
-            "lst": 25.7,
+            "aqi": 130,
+            "lst": 26.8,
             "flood_points": 2
         },
         "Quoc Oai": {
-            "aqi": 102,
-            "lst": 25.2,
+            "aqi": 103,
+            "lst": 26.3,
             "flood_points": 1
         },
         "Thach That": {
-            "aqi": 110,
-            "lst": 25.3,
+            "aqi": 111,
+            "lst": 26.4,
             "flood_points": 1
         },
         "Chuong My": {
-            "aqi": 105,
-            "lst": 25.2,
+            "aqi": 106,
+            "lst": 26.3,
             "flood_points": 1
         },
         "Thanh Oai": {
-            "aqi": 113,
-            "lst": 25.2,
+            "aqi": 114,
+            "lst": 26.3,
             "flood_points": 1
         },
         "Thuong Tin": {
-            "aqi": 118,
-            "lst": 25.3,
+            "aqi": 119,
+            "lst": 26.4,
             "flood_points": 1
         },
         "Phu Xuyen": {
-            "aqi": 110,
-            "lst": 25.1,
+            "aqi": 111,
+            "lst": 26.2,
             "flood_points": 1
         },
         "Ung Hoa": {
-            "aqi": 99,
-            "lst": 25.1,
+            "aqi": 100,
+            "lst": 26.2,
             "flood_points": 1
         },
         "My Duc": {
             "aqi": 89,
-            "lst": 25.1,
+            "lst": 26.2,
             "flood_points": 1
         }
     },
@@ -163,8 +163,8 @@
         "Endpoint https://api.waqi.info/feed/vietnam/hanoi/french-embassy/ returned status: error",
         "Endpoint https://api.waqi.info/feed/vietnam/hanoi/chi-cuc-bvmt-hanoi/ returned status: error",
         "Station Hanoi, Vietnam (Hà Nội) returned non-numeric AQI: -",
-        "Fetched AQI from United Nations International School of Hanoi, Vietnam (Trường Quốc tế Liên Hợp Quốc Hà Nội): 135",
-        "Selected realistic AQI 135 from United Nations International School of Hanoi, Vietnam (Trường Quốc tế Liên Hợp Quốc Hà Nội)",
-        "Successfully fetched weather: Temp=26.7°C, SoilTemp=26.8°C, Rain=0.0mm"
+        "Fetched AQI from United Nations International School of Hanoi, Vietnam (Trường Quốc tế Liên Hợp Quốc Hà Nội): 136",
+        "Selected realistic AQI 136 from United Nations International School of Hanoi, Vietnam (Trường Quốc tế Liên Hợp Quốc Hà Nội)",
+        "Successfully fetched weather: Temp=27.3°C, SoilTemp=27.9°C, Rain=0.0mm"
     ]
 }
