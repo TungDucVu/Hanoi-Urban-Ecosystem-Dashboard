@@ -1,9 +1,9 @@
 {
-    "last_updated": "2026-07-18T04:42:31.400421+00:00",
+    "last_updated": "2026-07-18T06:55:27.755791+00:00",
     "metro": {
         "aqi": 9,
         "lst": 36.9,
-        "air_temp": 33.6,
+        "air_temp": 34.5,
         "rain_mm": 0.0
     },
     "districts": {
@@ -165,6 +165,6 @@
         "Fetched AQI from Hanoi, Vietnam (Hà Nội): 9",
         "Fetched AQI from Hanoi, Vietnam (Hà Nội): 9",
         "All stations returned low values. Selected AQI 9 from Hanoi, Vietnam (Hà Nội)",
-        "Successfully fetched weather: Temp=33.6°C, SoilTemp=36.9°C, Rain=0.0mm"
+        "Successfully fetched weather: Temp=34.5°C, SoilTemp=36.9°C, Rain=0.0mm"
     ]
 }
