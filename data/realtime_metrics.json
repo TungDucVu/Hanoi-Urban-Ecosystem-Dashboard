@@ -1,10 +1,10 @@
 {
-    "last_updated": "2026-09-16T20:48:18.509746+00:00",
+    "last_updated": "2026-09-16T23:27:22.582778+00:00",
     "metro": {
         "aqi": 3,
         "lst": 24.1,
-        "air_temp": 24.2,
-        "rain_mm": 0.2
+        "air_temp": 24.1,
+        "rain_mm": 0.4
     },
     "districts": {
         "Ba Dinh": {
@@ -165,6 +165,6 @@
         "Fetched AQI from Hanoi, Vietnam (Hà Nội): 3",
         "Fetched AQI from Hanoi, Vietnam (Hà Nội): 3",
         "All stations returned low values. Selected AQI 3 from Hanoi, Vietnam (Hà Nội)",
-        "Successfully fetched weather: Temp=24.2°C, SoilTemp=24.1°C, Rain=0.2mm"
+        "Successfully fetched weather: Temp=24.1°C, SoilTemp=24.1°C, Rain=0.4mm"
     ]
 }
